@@ -4,10 +4,10 @@ const ubicacion = document.querySelector('#localizacion');
 const temperatura = document.querySelector('#temperatura');
 const descripcion = document.querySelector('#descripcion');
 
-//boton buscar
+//boton buscar haciendo click
 buscar.addEventListener('click', () => {
     const nomCiudad = ciudad.value;
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nomCiudad}&appid=f67eb2dd32483dc40375e01c49f2c2c9&lang=es`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nomCiudad}&appid=AQUI_VA_TU_API_KEY`)
         .then(Response => Response.json())
         .then(data => {
             ubicacion.textContent = data.name;
@@ -21,4 +21,10 @@ buscar.addEventListener('click', () => {
         temperatura.textContent = '';
         descripcion.textContent = '';
     });
-})
+});
+// Búsqueda oprimiendo Enter
+ciudad.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        buscar.click();
+    }
+});
